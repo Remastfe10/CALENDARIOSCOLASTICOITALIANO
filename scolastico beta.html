@@ -1,0 +1,2262 @@
+```html
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Anno Scolastico</title>
+
+<style>
+:root{
+--bg:#080d19;
+--card:#131b2e;
+--border:#293653;
+--text:#f5f7ff;
+--muted:#9ba8c2;
+--primary:#695cff;
+--primary2:#9b6cff;
+--green:#22c55e;
+--red:#ef4444;
+--blue:#38bdf8;
+--orange:#f59e0b;
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+background:
+radial-gradient(circle at top left,#1a1b4a 0,#080d19 38%),
+#080d19;
+color:var(--text);
+font-family:Arial,Helvetica,sans-serif;
+min-height:100vh;
+}
+
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+
+.app{
+width:min(1200px,100%);
+margin:auto;
+padding:20px;
+}
+
+.auth{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.auth-card{
+width:100%;
+max-width:480px;
+background:rgba(19,27,46,.97);
+border:1px solid var(--border);
+border-radius:28px;
+padding:32px;
+box-shadow:0 30px 100px rgba(0,0,0,.5);
+}
+
+.logo{
+width:68px;
+height:68px;
+border-radius:20px;
+background:linear-gradient(135deg,var(--primary),var(--primary2));
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:32px;
+margin-bottom:20px;
+}
+
+h1,h2,h3,p{margin-top:0}
+.muted{color:var(--muted)}
+
+.field{margin-bottom:16px}
+
+.field label{
+display:block;
+margin-bottom:7px;
+font-size:14px;
+}
+
+input,select,textarea{
+width:100%;
+padding:13px;
+border-radius:12px;
+border:1px solid var(--border);
+background:#0b1222;
+color:white;
+outline:none;
+}
+
+input:focus,select:focus,textarea:focus{
+border-color:var(--primary);
+box-shadow:0 0 0 3px rgba(105,92,255,.15);
+}
+
+textarea{
+resize:vertical;
+min-height:80px;
+}
+
+.btn{
+border:0;
+border-radius:12px;
+padding:12px 16px;
+color:white;
+background:#26324d;
+transition:.2s;
+}
+
+.btn:hover{
+transform:translateY(-1px);
+filter:brightness(1.1);
+}
+
+.btn-primary{
+background:linear-gradient(135deg,var(--primary),var(--primary2));
+}
+
+.btn-danger{background:#8c2633}
+.btn-green{background:#16733d}
+.btn-orange{background:#8b5b0b}
+.full{width:100%}
+
+.auth-switch{
+text-align:center;
+margin-top:18px;
+}
+
+.link{
+color:#a59dff;
+cursor:pointer;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px;
+margin-bottom:18px;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.brand-icon{
+width:50px;
+height:50px;
+border-radius:15px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,var(--primary),var(--primary2));
+font-size:23px;
+}
+
+.user{
+display:flex;
+align-items:center;
+gap:9px;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:14px;
+padding:7px;
+}
+
+.avatar{
+width:36px;
+height:36px;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#2a3655;
+font-weight:bold;
+}
+
+nav{
+display:flex;
+gap:8px;
+overflow-x:auto;
+margin-bottom:18px;
+}
+
+.nav-btn{
+white-space:nowrap;
+border:1px solid var(--border);
+background:var(--card);
+color:#ccd5eb;
+padding:11px 16px;
+border-radius:12px;
+}
+
+.nav-btn.active{
+background:var(--primary);
+border-color:var(--primary);
+color:white;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:14px;
+}
+
+.card{
+background:rgba(19,27,46,.96);
+border:1px solid var(--border);
+border-radius:18px;
+padding:20px;
+}
+
+.stat-label{
+color:var(--muted);
+font-size:14px;
+}
+
+.stat-number{
+font-size:34px;
+font-weight:800;
+margin:8px 0;
+}
+
+.green{color:var(--green)}
+.red{color:#ff6b6b}
+.blue{color:var(--blue)}
+.orange{color:#fbbf24}
+
+.two{
+display:grid;
+grid-template-columns:1.4fr .8fr;
+gap:15px;
+margin-top:15px;
+}
+
+.progress{
+height:14px;
+background:#090f1e;
+border-radius:20px;
+overflow:hidden;
+margin:15px 0 8px;
+}
+
+.progress-bar{
+height:100%;
+width:0;
+background:linear-gradient(90deg,var(--primary),#b56cff);
+transition:.4s;
+}
+
+.section-title{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+margin-bottom:15px;
+}
+
+.list{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.list-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+padding:12px;
+border-radius:12px;
+background:#0d1628;
+border:1px solid var(--border);
+}
+
+.list-main{min-width:0}
+
+.list-title{font-weight:bold}
+
+.list-sub{
+color:var(--muted);
+font-size:13px;
+margin-top:3px;
+}
+
+.actions{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+
+.notice{
+background:rgba(34,197,94,.1);
+border:1px solid rgba(34,197,94,.3);
+color:#a7f3c0;
+padding:13px;
+border-radius:12px;
+margin-bottom:15px;
+}
+
+.empty{
+text-align:center;
+padding:30px;
+color:var(--muted);
+}
+
+.calendar-controls{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;
+}
+
+.weekdays,
+.calendar-grid{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:6px;
+}
+
+.weekday{
+text-align:center;
+color:var(--muted);
+font-size:12px;
+padding:7px;
+}
+
+.day{
+min-height:78px;
+padding:8px;
+border-radius:10px;
+background:#0e1729;
+border:1px solid #202d48;
+}
+
+.day.empty{opacity:.2}
+
+.day.weekend{
+color:#737f9b;
+background:#111622;
+}
+
+.day.today{
+box-shadow:inset 0 0 0 2px var(--primary);
+}
+
+.day.holiday{
+background:rgba(239,68,68,.12);
+border-color:#752b35;
+}
+
+.day.bridge{
+background:rgba(245,158,11,.12);
+border-color:#72531c;
+}
+
+.day.absence{
+background:rgba(56,189,248,.12);
+border-color:#155875;
+}
+
+.day-number{
+font-weight:bold;
+font-size:13px;
+}
+
+.day-tags{
+margin-top:6px;
+display:flex;
+flex-direction:column;
+gap:3px;
+}
+
+.tag{
+font-size:9px;
+padding:3px 4px;
+border-radius:5px;
+background:#26324b;
+}
+
+.tag.red{background:#54232b}
+.tag.orange{background:#4f3a16}
+.tag.blue{background:#123e51}
+.tag.gray{background:#252b3a}
+
+.setting{
+padding:16px 0;
+border-bottom:1px solid var(--border);
+}
+
+.setting:last-child{border-bottom:0}
+
+.checkbox-row{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:12px;
+}
+
+.check{
+display:flex;
+align-items:center;
+gap:7px;
+padding:9px 12px;
+border-radius:10px;
+background:#0e1729;
+border:1px solid var(--border);
+}
+
+.check input{width:auto}
+
+.modal-bg{
+position:fixed;
+inset:0;
+z-index:100;
+background:rgba(0,0,0,.72);
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.modal{
+width:100%;
+max-width:520px;
+max-height:90vh;
+overflow:auto;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:20px;
+padding:24px;
+}
+
+.modal-actions{
+display:flex;
+justify-content:flex-end;
+gap:8px;
+margin-top:20px;
+}
+
+footer{
+text-align:center;
+color:#65718c;
+padding:30px 0 10px;
+font-size:12px;
+}
+
+@media(max-width:850px){
+.grid{grid-template-columns:repeat(2,1fr)}
+.two{grid-template-columns:1fr}
+}
+
+@media(max-width:550px){
+.app{padding:12px}
+.auth-card{padding:23px}
+.grid{grid-template-columns:1fr 1fr}
+.stat-number{font-size:27px}
+.day{min-height:62px;padding:6px}
+.day-tags{font-size:8px}
+header{align-items:flex-start}
+.user span{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<div id="authScreen" class="auth">
+
+<div class="auth-card">
+
+<div id="registerBox">
+
+<div class="logo">📚</div>
+
+<h1>Crea il tuo account</h1>
+
+<p class="muted">
+Configura il periodo scolastico e crea il tuo account.
+</p>
+
+<div class="field">
+<label>Nickname</label>
+<input id="regNick" maxlength="30" placeholder="Es. Marco123">
+</div>
+
+<div class="field">
+<label>Password</label>
+<input id="regPass" type="password" placeholder="Password">
+</div>
+
+<div class="field">
+<label>Inizio anno / progetto</label>
+<input id="regStart" type="date">
+</div>
+
+<div class="field">
+<label>Fine anno / progetto</label>
+<input id="regEnd" type="date">
+</div>
+
+<button class="btn btn-primary full" onclick="createAccount()">
+Crea account ufficialmente
+</button>
+
+<div class="auth-switch">
+Hai già un account?
+<span class="link" onclick="showLogin()">Accedi</span>
+</div>
+
+</div>
+
+<div id="loginBox" class="hidden">
+
+<div class="logo">📚</div>
+
+<h1>Bentornato 👋</h1>
+
+<p class="muted">Accedi al tuo account.</p>
+
+<div class="field">
+<label>Nickname</label>
+<input id="loginNick">
+</div>
+
+<div class="field">
+<label>Password</label>
+<input id="loginPass" type="password">
+</div>
+
+<button class="btn btn-primary full" onclick="login()">
+Accedi
+</button>
+
+<div class="auth-switch">
+Non hai un account?
+<span class="link" onclick="showRegister()">Crealo</span>
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<div id="appScreen" class="hidden">
+
+<div class="app">
+
+<header>
+
+<div class="brand">
+
+<div class="brand-icon">📚</div>
+
+<div>
+<h2 style="margin:0">Anno Scolastico</h2>
+<div class="muted" id="periodText"></div>
+</div>
+
+</div>
+
+<div class="user">
+
+<div class="avatar" id="avatar">?</div>
+
+<span id="username"></span>
+
+<button class="btn" onclick="logout()">Esci</button>
+
+</div>
+
+</header>
+
+
+<nav>
+
+<button class="nav-btn active"
+onclick="openPage('dashboard',this)">
+🏠 Dashboard
+</button>
+
+<button class="nav-btn"
+onclick="openPage('calendar',this)">
+📅 Calendario
+</button>
+
+<button class="nav-btn"
+onclick="openPage('absence',this)">
+❌ Assenze
+</button>
+
+<button class="nav-btn"
+onclick="openPage('settings',this)">
+⚙️ Impostazioni
+</button>
+
+</nav>
+
+
+<section id="dashboard" class="page">
+
+<div class="notice">
+✅ Puoi sempre modificare weekend, festività, ponti e assenze dalle Impostazioni.
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="stat-label">Giorni trascorsi</div>
+<div class="stat-number green" id="passed">0</div>
+<div class="stat-label">giorni effettivamente trascorsi</div>
+</div>
+
+<div class="card">
+<div class="stat-label">Giorni rimanenti</div>
+<div class="stat-number blue" id="remaining">0</div>
+<div class="stat-label">giorni contabili futuri</div>
+</div>
+
+<div class="card">
+<div class="stat-label">Assenze</div>
+<div class="stat-number red" id="absenceCount">0</div>
+<div class="stat-label">assenze contabili</div>
+</div>
+
+<div class="card">
+<div class="stat-label">Totale senza assenze</div>
+<div class="stat-number" id="total">0</div>
+<div class="stat-label">giorni contabili completi</div>
+</div>
+
+</div>
+
+<div class="two">
+
+<div class="card">
+
+<div class="section-title">
+<h3>📈 Progresso</h3>
+<b id="percent">0%</b>
+</div>
+
+<div class="progress">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<p class="muted" id="progressText"></p>
+
+</div>
+
+<div class="card">
+
+<h3>📌 Riepilogo</h3>
+
+<div class="list">
+
+<div class="list-item">
+<div class="list-main">
+<div class="list-title">🚫 Giorni esclusi</div>
+<div class="list-sub" id="excludedSummary">-</div>
+</div>
+</div>
+
+<div class="list-item">
+<div class="list-main">
+<div class="list-title">🎉 Festività</div>
+<div class="list-sub" id="holidaySummary">0</div>
+</div>
+</div>
+
+<div class="list-item">
+<div class="list-main">
+<div class="list-title">🌉 Ponti</div>
+<div class="list-sub" id="bridgeSummary">0</div>
+</div>
+</div>
+
+<div class="list-item">
+<div class="list-main">
+<div class="list-title">❌ Assenze passate</div>
+<div class="list-sub" id="pastAbsenceSummary">0</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="calendar" class="page hidden">
+
+<div class="card">
+
+<div class="calendar-controls">
+
+<button class="btn" onclick="changeMonth(-1)">←</button>
+
+<h3 id="calendarTitle"></h3>
+
+<button class="btn" onclick="changeMonth(1)">→</button>
+
+</div>
+
+<div class="weekdays">
+
+<div class="weekday">Lun</div>
+<div class="weekday">Mar</div>
+<div class="weekday">Mer</div>
+<div class="weekday">Gio</div>
+<div class="weekday">Ven</div>
+<div class="weekday">Sab</div>
+<div class="weekday">Dom</div>
+
+</div>
+
+<div id="calendarGrid" class="calendar-grid"></div>
+
+</div>
+
+</section>
+
+
+<section id="absence" class="page hidden">
+
+<div class="card">
+
+<div class="section-title">
+
+<div>
+<h3>❌ Assenze</h3>
+<p class="muted">Gestisci tutte le tue assenze.</p>
+</div>
+
+<button class="btn btn-primary"
+onclick="openAbsenceModal()">
++ Aggiungi assenza
+</button>
+
+</div>
+
+<div id="absenceList" class="list"></div>
+
+</div>
+
+</section>
+
+
+<section id="settings" class="page hidden">
+
+<div class="card">
+
+<h3>⚙️ Impostazioni</h3>
+
+<p class="muted">
+Puoi modificare tutto quando vuoi.
+</p>
+
+<div class="setting">
+
+<div class="field">
+<label>Inizio anno / progetto</label>
+<input id="setStart" type="date">
+</div>
+
+<div class="field">
+<label>Fine anno / progetto</label>
+<input id="setEnd" type="date">
+</div>
+
+</div>
+
+
+<div class="setting">
+
+<b>🚫 Giorni della settimana non contabili</b>
+
+<p class="list-sub">
+Questi giorni non verranno mai conteggiati.
+</p>
+
+<div class="checkbox-row">
+
+<label class="check">
+<input type="checkbox" value="1"> Lunedì
+</label>
+
+<label class="check">
+<input type="checkbox" value="2"> Martedì
+</label>
+
+<label class="check">
+<input type="checkbox" value="3"> Mercoledì
+</label>
+
+<label class="check">
+<input type="checkbox" value="4"> Giovedì
+</label>
+
+<label class="check">
+<input type="checkbox" value="5"> Venerdì
+</label>
+
+<label class="check">
+<input type="checkbox" value="6"> Sabato
+</label>
+
+<label class="check">
+<input type="checkbox" value="0"> Domenica
+</label>
+
+</div>
+
+</div>
+
+
+<div class="setting">
+
+<label style="display:flex;align-items:center;gap:10px">
+
+<input id="excludeAbsences"
+type="checkbox"
+style="width:20px;height:20px">
+
+<div>
+<b>Le assenze non contano come giorno trascorso</b>
+<div class="list-sub">
+Le assenze vengono escluse dal conteggio.
+</div>
+</div>
+
+</label>
+
+</div>
+
+
+<div class="setting">
+
+<div class="section-title">
+
+<div>
+<b>🎉 Festività</b>
+
+<div class="list-sub">
+Puoi inserire una festività singola o un intervallo.
+</div>
+
+</div>
+
+<button class="btn btn-primary"
+onclick="openSpecialModal('holiday')">
++ Aggiungi
+</button>
+
+</div>
+
+<div id="holidayList" class="list"></div>
+
+</div>
+
+
+<div class="setting">
+
+<div class="section-title">
+
+<div>
+<b>🌉 Ponti</b>
+
+<div class="list-sub">
+Inserisci inizio e fine del ponte.
+</div>
+
+</div>
+
+<button class="btn btn-primary"
+onclick="openSpecialModal('bridge')">
++ Aggiungi ponte
+</button>
+
+</div>
+
+<div id="bridgeList" class="list"></div>
+
+</div>
+
+
+<div class="actions" style="margin-top:20px">
+
+<button class="btn btn-primary"
+onclick="saveSettings()">
+💾 Salva impostazioni
+</button>
+
+<button class="btn btn-danger"
+onclick="resetAccount()">
+🗑️ Elimina account
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+Anno Scolastico • Dati salvati localmente nel browser
+</footer>
+
+</div>
+</div>
+
+
+<div id="absenceModal" class="modal-bg hidden">
+
+<div class="modal">
+
+<h2>❌ Aggiungi assenza</h2>
+
+<div class="field">
+<label>Data</label>
+<input id="absenceDate" type="date">
+</div>
+
+<div class="field">
+<label>Motivo / nota</label>
+<textarea id="absenceNote"
+placeholder="Facoltativo"></textarea>
+</div>
+
+<div class="modal-actions">
+
+<button class="btn"
+onclick="closeModal('absenceModal')">
+Annulla
+</button>
+
+<button class="btn btn-primary"
+onclick="addAbsence()">
+Aggiungi
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div id="specialModal" class="modal-bg hidden">
+
+<div class="modal">
+
+<h2 id="specialTitle">Aggiungi evento</h2>
+
+<div class="field">
+
+<label>Nome</label>
+
+<input id="specialName"
+placeholder="Es. Vacanze di Natale">
+
+</div>
+
+<div class="field">
+
+<label>Data di inizio</label>
+
+<input id="specialStart" type="date">
+
+</div>
+
+<div class="field">
+
+<label>Data di fine</label>
+
+<input id="specialEnd" type="date">
+
+</div>
+
+<div class="muted" style="font-size:13px">
+Per una festività singola inserisci la stessa data come inizio e fine.
+</div>
+
+<div class="modal-actions">
+
+<button class="btn"
+onclick="closeModal('specialModal')">
+Annulla
+</button>
+
+<button class="btn btn-primary"
+onclick="addSpecial()">
+Salva evento
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+const STORAGE_KEY="anno_scolastico_range_v4";
+
+let account=null;
+let calendarDate=new Date();
+let specialType="holiday";
+
+const monthNames=[
+"Gennaio","Febbraio","Marzo","Aprile",
+"Maggio","Giugno","Luglio","Agosto",
+"Settembre","Ottobre","Novembre","Dicembre"
+];
+
+const weekdayNames=[
+"Domenica","Lunedì","Martedì",
+"Mercoledì","Giovedì","Venerdì","Sabato"
+];
+
+
+function toISO(date){
+
+const d=new Date(date);
+
+return d.getFullYear()+"-"+
+String(d.getMonth()+1).padStart(2,"0")+"-"+
+String(d.getDate()).padStart(2,"0");
+
+}
+
+
+function parseDate(str){
+
+const [y,m,d]=str.split("-").map(Number);
+
+return new Date(y,m-1,d);
+
+}
+
+
+function formatDate(str){
+
+return parseDate(str).toLocaleDateString(
+"it-IT",
+{
+day:"2-digit",
+month:"2-digit",
+year:"numeric"
+});
+
+}
+
+
+function todayDate(){
+
+return parseDate(toISO(new Date()));
+
+}
+
+
+window.addEventListener("load",()=>{
+
+const saved=localStorage.getItem(STORAGE_KEY);
+
+if(saved){
+
+try{
+
+account=JSON.parse(saved);
+
+if(!account.holidays)
+account.holidays=[];
+
+if(!account.bridges)
+account.bridges=[];
+
+if(!account.absences)
+account.absences=[];
+
+if(!account.excludedWeekdays)
+account.excludedWeekdays=[0,6];
+
+if(account.excludeAbsences===undefined)
+account.excludeAbsences=true;
+
+showApp();
+
+}catch(e){
+
+localStorage.removeItem(STORAGE_KEY);
+
+}
+
+}
+
+const now=new Date();
+
+document.getElementById("regStart").value=
+toISO(now);
+
+document.getElementById("regEnd").value=
+toISO(
+new Date(
+now.getFullYear(),
+now.getMonth(),
+now.getDate()+365
+)
+);
+
+});
+
+
+function save(){
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(account)
+);
+
+}
+
+
+function showLogin(){
+
+document.getElementById("registerBox")
+.classList.add("hidden");
+
+document.getElementById("loginBox")
+.classList.remove("hidden");
+
+}
+
+
+function showRegister(){
+
+document.getElementById("loginBox")
+.classList.add("hidden");
+
+document.getElementById("registerBox")
+.classList.remove("hidden");
+
+}
+
+
+function createAccount(){
+
+const nickname=
+document.getElementById("regNick").value.trim();
+
+const password=
+document.getElementById("regPass").value;
+
+const start=
+document.getElementById("regStart").value;
+
+const end=
+document.getElementById("regEnd").value;
+
+if(!nickname || !password || !start || !end){
+
+alert("Compila tutti i campi.");
+
+return;
+
+}
+
+if(password.length<4){
+
+alert("La password deve avere almeno 4 caratteri.");
+
+return;
+
+}
+
+if(start>=end){
+
+alert("La fine deve essere successiva all'inizio.");
+
+return;
+
+}
+
+account={
+
+nickname,
+password,
+start,
+end,
+
+excludedWeekdays:[0,6],
+
+excludeAbsences:true,
+
+holidays:[],
+bridges:[],
+absences:[],
+
+settingsConfirmed:true
+
+};
+
+save();
+
+alert(
+"Account creato ufficialmente! 🎉\n\n"+
+"Puoi sempre modificare le impostazioni."
+);
+
+showApp();
+
+}
+
+
+function login(){
+
+const nickname=
+document.getElementById("loginNick").value.trim();
+
+const password=
+document.getElementById("loginPass").value;
+
+const saved=
+localStorage.getItem(STORAGE_KEY);
+
+if(!saved){
+
+alert(
+"Nessun account trovato su questo browser."
+);
+
+return;
+
+}
+
+const data=JSON.parse(saved);
+
+if(
+data.nickname===nickname &&
+data.password===password
+){
+
+account=data;
+
+if(!account.holidays)
+account.holidays=[];
+
+if(!account.bridges)
+account.bridges=[];
+
+if(!account.absences)
+account.absences=[];
+
+if(!account.excludedWeekdays)
+account.excludedWeekdays=[0,6];
+
+if(account.excludeAbsences===undefined)
+account.excludeAbsences=true;
+
+save();
+
+showApp();
+
+}else{
+
+alert("Nickname o password errati.");
+
+}
+
+}
+
+
+function logout(){
+
+account=null;
+
+document.getElementById("appScreen")
+.classList.add("hidden");
+
+document.getElementById("authScreen")
+.classList.remove("hidden");
+
+showLogin();
+
+}
+
+
+function resetAccount(){
+
+if(!confirm(
+"Eliminare account e tutti i dati?"
+))return;
+
+localStorage.removeItem(STORAGE_KEY);
+
+location.reload();
+
+}
+
+
+function showApp(){
+
+document.getElementById("authScreen")
+.classList.add("hidden");
+
+document.getElementById("appScreen")
+.classList.remove("hidden");
+
+document.getElementById("username")
+.textContent=account.nickname;
+
+document.getElementById("avatar")
+.textContent=
+account.nickname.charAt(0).toUpperCase();
+
+renderSettings();
+
+updateAll();
+
+}
+
+
+function openPage(page,button){
+
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.add("hidden"));
+
+document.getElementById(page)
+.classList.remove("hidden");
+
+document.querySelectorAll(".nav-btn")
+.forEach(b=>b.classList.remove("active"));
+
+button.classList.add("active");
+
+if(page==="calendar")
+renderCalendar();
+
+if(page==="absence")
+renderAbsences();
+
+if(page==="settings")
+renderSettings();
+
+}
+
+
+function getAllDates(){
+
+const result=[];
+
+let current=parseDate(account.start);
+
+const end=parseDate(account.end);
+
+while(current<=end){
+
+result.push(toISO(current));
+
+current.setDate(
+current.getDate()+1
+);
+
+}
+
+return result;
+
+}
+
+
+function eventContains(event,date){
+
+return date>=event.start &&
+date<=event.end;
+
+}
+
+
+function getEvent(type,date){
+
+let list=[];
+
+if(type==="holiday")
+list=account.holidays;
+
+if(type==="bridge")
+list=account.bridges;
+
+return list.find(
+event=>eventContains(event,date)
+);
+
+}
+
+
+function isEventExcluded(date){
+
+if(getEvent("holiday",date))
+return true;
+
+if(getEvent("bridge",date))
+return true;
+
+return false;
+
+}
+
+
+function isCalendarExcluded(date){
+
+const d=parseDate(date);
+
+if(
+account.excludedWeekdays
+.includes(d.getDay())
+){
+
+return true;
+
+}
+
+if(isEventExcluded(date))
+return true;
+
+return false;
+
+}
+
+
+function getStats(){
+
+const dates=getAllDates();
+
+const today=todayDate();
+
+let total=0;
+let passed=0;
+let remaining=0;
+
+let pastAbsences=0;
+let futureAbsences=0;
+
+dates.forEach(date=>{
+
+const d=parseDate(date);
+
+if(isCalendarExcluded(date))
+return;
+
+total++;
+
+const absence=
+account.absences
+.some(x=>x.date===date);
+
+if(
+absence &&
+account.excludeAbsences
+){
+
+if(d<today)
+pastAbsences++;
+else
+futureAbsences++;
+
+return;
+
+}
+
+if(d<today)
+passed++;
+else
+remaining++;
+
+});
+
+const countedAbsences=
+pastAbsences+
+futureAbsences;
+
+const percentage=
+total>0
+?Math.round((passed/total)*100)
+:0;
+
+return{
+total,
+passed,
+remaining,
+pastAbsences,
+futureAbsences,
+countedAbsences,
+percentage
+};
+
+}
+
+
+function updateDashboard(){
+
+const s=getStats();
+
+document.getElementById("passed")
+.textContent=s.passed;
+
+document.getElementById("remaining")
+.textContent=s.remaining;
+
+document.getElementById("total")
+.textContent=s.total;
+
+document.getElementById("absenceCount")
+.textContent=s.countedAbsences;
+
+document.getElementById("percent")
+.textContent=s.percentage+"%";
+
+document.getElementById("progressBar")
+.style.width=
+Math.min(100,s.percentage)+"%";
+
+document.getElementById("progressText")
+.textContent=
+`${s.passed} giorni trascorsi • ${s.remaining} rimanenti • ${s.countedAbsences} assenze`;
+
+document.getElementById("pastAbsenceSummary")
+.textContent=s.pastAbsences;
+
+document.getElementById("periodText")
+.textContent=
+`${formatDate(account.start)} → ${formatDate(account.end)}`;
+
+const names=
+account.excludedWeekdays
+.map(x=>weekdayNames[x]);
+
+document.getElementById("excludedSummary")
+.textContent=
+names.length
+?names.join(", ")
+:"Nessuno";
+
+document.getElementById("holidaySummary")
+.textContent=
+account.holidays.length;
+
+document.getElementById("bridgeSummary")
+.textContent=
+account.bridges.length;
+
+}
+
+
+function updateAll(){
+
+updateDashboard();
+renderCalendar();
+renderAbsences();
+renderSpecialLists();
+
+}
+
+
+function changeMonth(amount){
+
+calendarDate.setMonth(
+calendarDate.getMonth()+amount
+);
+
+renderCalendar();
+
+}
+
+
+function renderCalendar(){
+
+const year=
+calendarDate.getFullYear();
+
+const month=
+calendarDate.getMonth();
+
+document.getElementById("calendarTitle")
+.textContent=
+`${monthNames[month]} ${year}`;
+
+const grid=
+document.getElementById("calendarGrid");
+
+grid.innerHTML="";
+
+const first=
+new Date(year,month,1);
+
+const startDay=
+(first.getDay()+6)%7;
+
+for(let i=0;i<startDay;i++){
+
+const empty=
+document.createElement("div");
+
+empty.className="day empty";
+
+grid.appendChild(empty);
+
+}
+
+const days=
+new Date(year,month+1,0).getDate();
+
+const today=toISO(new Date());
+
+for(let day=1;day<=days;day++){
+
+const date=
+toISO(
+new Date(year,month,day)
+);
+
+const d=parseDate(date);
+
+const el=
+document.createElement("div");
+
+el.className="day";
+
+if(
+d.getDay()===0 ||
+d.getDay()===6
+)
+el.classList.add("weekend");
+
+if(date===today)
+el.classList.add("today");
+
+const holiday=
+getEvent("holiday",date);
+
+const bridge=
+getEvent("bridge",date);
+
+const absence=
+account.absences.find(
+x=>x.date===date
+);
+
+if(holiday)
+el.classList.add("holiday");
+
+if(bridge)
+el.classList.add("bridge");
+
+if(absence)
+el.classList.add("absence");
+
+el.innerHTML=
+`
+<div class="day-number">${day}</div>
+<div class="day-tags"></div>
+`;
+
+const tags=
+el.querySelector(".day-tags");
+
+if(holiday){
+
+tags.innerHTML+=
+`
+<div class="tag red">
+🎉 ${escapeHtml(holiday.name)}
+</div>
+`;
+
+}
+
+if(bridge){
+
+tags.innerHTML+=
+`
+<div class="tag orange">
+🌉 ${escapeHtml(bridge.name)}
+</div>
+`;
+
+}
+
+if(absence){
+
+tags.innerHTML+=
+`
+<div class="tag blue">
+❌ Assenza
+</div>
+`;
+
+}
+
+if(
+isCalendarExcluded(date) &&
+!holiday &&
+!bridge &&
+!absence
+){
+
+tags.innerHTML+=
+`
+<div class="tag gray">
+🚫 Non contabile
+</div>
+`;
+
+}
+
+grid.appendChild(el);
+
+}
+
+}
+
+
+function openAbsenceModal(){
+
+document.getElementById("absenceDate")
+.value=toISO(new Date());
+
+document.getElementById("absenceNote")
+.value="";
+
+document.getElementById("absenceModal")
+.classList.remove("hidden");
+
+}
+
+
+function addAbsence(){
+
+const date=
+document.getElementById("absenceDate").value;
+
+const note=
+document.getElementById("absenceNote").value.trim();
+
+if(!date){
+
+alert("Scegli una data.");
+
+return;
+
+}
+
+if(
+date<account.start ||
+date>account.end
+){
+
+alert(
+"La data deve essere dentro il periodo."
+);
+
+return;
+
+}
+
+if(isCalendarExcluded(date)){
+
+alert(
+"Questa data è già esclusa dal conteggio."
+);
+
+return;
+
+}
+
+if(
+account.absences.some(x=>x.date===date)
+){
+
+alert("Questa assenza esiste già.");
+
+return;
+
+}
+
+account.absences.push({
+date,
+note
+});
+
+account.absences.sort(
+(a,b)=>a.date.localeCompare(b.date)
+);
+
+save();
+
+closeModal("absenceModal");
+
+updateAll();
+
+}
+
+
+function removeAbsence(index){
+
+if(
+!confirm("Rimuovere questa assenza?")
+)return;
+
+account.absences.splice(index,1);
+
+save();
+
+updateAll();
+
+}
+
+
+function renderAbsences(){
+
+const list=
+document.getElementById("absenceList");
+
+list.innerHTML="";
+
+if(!account.absences.length){
+
+list.innerHTML=
+`
+<div class="empty">
+Nessuna assenza registrata.
+</div>
+`;
+
+return;
+
+}
+
+account.absences.forEach(
+(absence,index)=>{
+
+const item=
+document.createElement("div");
+
+item.className="list-item";
+
+item.innerHTML=
+`
+<div class="list-main">
+
+<div class="list-title">
+❌ ${formatDate(absence.date)}
+</div>
+
+<div class="list-sub">
+${escapeHtml(
+absence.note ||
+"Nessuna nota"
+)}
+</div>
+
+</div>
+
+<button
+class="btn btn-danger"
+onclick="removeAbsence(${index})">
+🗑️ Rimuovi
+</button>
+`;
+
+list.appendChild(item);
+
+});
+
+}
+
+
+function openSpecialModal(type){
+
+specialType=type;
+
+let title="";
+
+if(type==="holiday")
+title="🎉 Aggiungi festività";
+
+if(type==="bridge")
+title="🌉 Aggiungi ponte";
+
+document.getElementById("specialTitle")
+.textContent=title;
+
+document.getElementById("specialName")
+.value="";
+
+document.getElementById("specialStart")
+.value="";
+
+document.getElementById("specialEnd")
+.value="";
+
+document.getElementById("specialModal")
+.classList.remove("hidden");
+
+}
+
+
+function addSpecial(){
+
+const name=
+document.getElementById("specialName")
+.value.trim();
+
+const start=
+document.getElementById("specialStart")
+.value;
+
+const end=
+document.getElementById("specialEnd")
+.value;
+
+if(!name || !start || !end){
+
+alert(
+"Inserisci nome, data di inizio e data di fine."
+);
+
+return;
+
+}
+
+if(start>end){
+
+alert(
+"La data di fine deve essere successiva all'inizio."
+);
+
+return;
+
+}
+
+if(
+start<account.start ||
+end>account.end
+){
+
+alert(
+"L'intervallo deve essere dentro l'anno scolastico."
+);
+
+return;
+
+}
+
+let list;
+
+if(specialType==="holiday")
+list=account.holidays;
+
+if(specialType==="bridge")
+list=account.bridges;
+
+const overlap=list.some(event=>{
+
+return start<=event.end &&
+end>=event.start;
+
+});
+
+if(overlap){
+
+alert(
+"Questo intervallo si sovrappone a un evento già presente."
+);
+
+return;
+
+}
+
+list.push({
+name,
+start,
+end
+});
+
+list.sort(
+(a,b)=>a.start.localeCompare(b.start)
+);
+
+save();
+
+closeModal("specialModal");
+
+updateAll();
+
+}
+
+
+function renderSpecialLists(){
+
+renderSpecialList(
+"holidayList",
+account.holidays,
+"holiday"
+);
+
+renderSpecialList(
+"bridgeList",
+account.bridges,
+"bridge"
+);
+
+}
+
+
+function renderSpecialList(
+id,
+list,
+type
+){
+
+const container=
+document.getElementById(id);
+
+container.innerHTML="";
+
+if(!list.length){
+
+container.innerHTML=
+`
+<div class="empty">
+Nessun evento programmato.
+</div>
+`;
+
+return;
+
+}
+
+list.forEach((event,index)=>{
+
+let icon="";
+
+if(type==="holiday")
+icon="🎉";
+
+if(type==="bridge")
+icon="🌉";
+
+const item=
+document.createElement("div");
+
+item.className="list-item";
+
+item.innerHTML=
+`
+<div class="list-main">
+
+<div class="list-title">
+${icon} ${escapeHtml(event.name)}
+</div>
+
+<div class="list-sub">
+${formatDate(event.start)}
+→
+${formatDate(event.end)}
+</div>
+
+</div>
+
+<button
+class="btn btn-danger"
+onclick="removeSpecial('${type}',${index})">
+🗑️
+</button>
+`;
+
+container.appendChild(item);
+
+});
+
+}
+
+
+function removeSpecial(type,index){
+
+let list;
+
+if(type==="holiday")
+list=account.holidays;
+
+if(type==="bridge")
+list=account.bridges;
+
+if(
+!confirm("Vuoi eliminare l'intero periodo?")
+)return;
+
+list.splice(index,1);
+
+save();
+
+updateAll();
+
+}
+
+
+function renderSettings(){
+
+document.getElementById("setStart")
+.value=account.start;
+
+document.getElementById("setEnd")
+.value=account.end;
+
+document.getElementById("excludeAbsences")
+.checked=
+account.excludeAbsences;
+
+document.querySelectorAll(
+"#settings .checkbox-row input"
+)
+.forEach(cb=>{
+
+cb.checked=
+account.excludedWeekdays
+.includes(Number(cb.value));
+
+});
+
+renderSpecialLists();
+
+}
+
+
+function saveSettings(){
+
+const start=
+document.getElementById("setStart").value;
+
+const end=
+document.getElementById("setEnd").value;
+
+if(!start || !end){
+
+alert("Inserisci entrambe le date.");
+
+return;
+
+}
+
+if(start>=end){
+
+alert(
+"La fine deve essere successiva all'inizio."
+);
+
+return;
+
+}
+
+const weekdays=[];
+
+document.querySelectorAll(
+"#settings .checkbox-row input"
+)
+.forEach(cb=>{
+
+if(cb.checked)
+weekdays.push(Number(cb.value));
+
+});
+
+account.start=start;
+
+account.end=end;
+
+account.excludedWeekdays=weekdays;
+
+account.excludeAbsences=
+document.getElementById(
+"excludeAbsences"
+).checked;
+
+account.settingsConfirmed=true;
+
+save();
+
+updateAll();
+
+alert(
+"Impostazioni salvate! ✅\n\n"+
+"Puoi sempre modificarle dalle Impostazioni."
+);
+
+}
+
+
+function closeModal(id){
+
+document.getElementById(id)
+.classList.add("hidden");
+
+}
+
+
+function escapeHtml(text){
+
+return String(text)
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+
+document.querySelectorAll(".modal-bg")
+.forEach(bg=>{
+
+bg.addEventListener("click",e=>{
+
+if(e.target===bg)
+bg.classList.add("hidden");
+
+});
+
+});
+
+
+document.addEventListener("keydown",e=>{
+
+if(e.key==="Escape"){
+
+document.querySelectorAll(".modal-bg")
+.forEach(m=>
+m.classList.add("hidden")
+);
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
+```
