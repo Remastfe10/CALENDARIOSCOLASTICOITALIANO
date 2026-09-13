@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Anno Scolastico - Cloud</title>
+<title>Anno Scolastico</title>
 
 <style>
 :root{
@@ -473,12 +473,18 @@ header{align-items:flex-start}
 <body>
 
 <div id="authScreen" class="auth">
+
 <div class="auth-card">
 
 <div id="registerBox">
+
 <div class="logo">📚</div>
-<h1>Crea il tuo account Cloud</h1>
-<p class="muted">I tuoi dati saranno accessibili da qualsiasi dispositivo tramite nickname e password.</p>
+
+<h1>Crea il tuo account</h1>
+
+<p class="muted">
+Configura il periodo scolastico e crea il tuo account.
+</p>
 
 <div class="field">
 <label>Nickname</label>
@@ -487,7 +493,7 @@ header{align-items:flex-start}
 
 <div class="field">
 <label>Password</label>
-<input id="regPass" type="password" placeholder="Password (min. 4 caratteri)">
+<input id="regPass" type="password" placeholder="Password">
 </div>
 
 <div class="field">
@@ -501,18 +507,23 @@ header{align-items:flex-start}
 </div>
 
 <button class="btn btn-primary full" onclick="createAccount()">
-Registrati Online
+Crea account ufficialmente
 </button>
 
 <div class="auth-switch">
-Hai già un account? <span class="link" onclick="showLogin()">Accedi</span>
+Hai già un account?
+<span class="link" onclick="showLogin()">Accedi</span>
 </div>
+
 </div>
 
 <div id="loginBox" class="hidden">
+
 <div class="logo">📚</div>
+
 <h1>Bentornato 👋</h1>
-<p class="muted">Accedi al tuo account da qualsiasi dispositivo.</p>
+
+<p class="muted">Accedi al tuo account.</p>
 
 <div class="field">
 <label>Nickname</label>
@@ -529,8 +540,10 @@ Accedi
 </button>
 
 <div class="auth-switch">
-Non hai un account? <span class="link" onclick="showRegister()">Crealo</span>
+Non hai un account?
+<span class="link" onclick="showRegister()">Crealo</span>
 </div>
+
 </div>
 
 </div>
@@ -538,37 +551,68 @@ Non hai un account? <span class="link" onclick="showRegister()">Crealo</span>
 
 
 <div id="appScreen" class="hidden">
+
 <div class="app">
 
 <header>
+
 <div class="brand">
+
 <div class="brand-icon">📚</div>
+
 <div>
 <h2 style="margin:0">Anno Scolastico</h2>
 <div class="muted" id="periodText"></div>
 </div>
+
 </div>
 
 <div class="user">
+
 <div class="avatar" id="avatar">?</div>
+
 <span id="username"></span>
+
 <button class="btn" onclick="logout()">Esci</button>
+
 </div>
+
 </header>
 
+
 <nav>
-<button class="nav-btn active" onclick="openPage('dashboard',this)">🏠 Dashboard</button>
-<button class="nav-btn" onclick="openPage('calendar',this)">📅 Calendario</button>
-<button class="nav-btn" onclick="openPage('absence',this)">❌ Assenze</button>
-<button class="nav-btn" onclick="openPage('settings',this)">⚙️ Impostazioni</button>
+
+<button class="nav-btn active"
+onclick="openPage('dashboard',this)">
+🏠 Dashboard
+</button>
+
+<button class="nav-btn"
+onclick="openPage('calendar',this)">
+📅 Calendario
+</button>
+
+<button class="nav-btn"
+onclick="openPage('absence',this)">
+❌ Assenze
+</button>
+
+<button class="nav-btn"
+onclick="openPage('settings',this)">
+⚙️ Impostazioni
+</button>
+
 </nav>
 
+
 <section id="dashboard" class="page">
+
 <div class="notice">
-🌐 Account Cloud sincronizzato. Puoi accedere da qualsiasi dispositivo con le tue credenziali.
+✅ Puoi sempre modificare weekend, festività, ponti e assenze dalle Impostazioni.
 </div>
 
 <div class="grid">
+
 <div class="card">
 <div class="stat-label">Giorni trascorsi</div>
 <div class="stat-number green" id="passed">0</div>
@@ -592,60 +636,85 @@ Non hai un account? <span class="link" onclick="showRegister()">Crealo</span>
 <div class="stat-number" id="total">0</div>
 <div class="stat-label">giorni contabili completi</div>
 </div>
+
 </div>
 
 <div class="two">
+
 <div class="card">
+
 <div class="section-title">
 <h3>📈 Progresso</h3>
 <b id="percent">0%</b>
 </div>
+
 <div class="progress">
 <div id="progressBar" class="progress-bar"></div>
 </div>
+
 <p class="muted" id="progressText"></p>
+
 </div>
 
 <div class="card">
+
 <h3>📌 Riepilogo</h3>
+
 <div class="list">
+
 <div class="list-item">
 <div class="list-main">
 <div class="list-title">🚫 Giorni esclusi</div>
 <div class="list-sub" id="excludedSummary">-</div>
 </div>
 </div>
+
 <div class="list-item">
 <div class="list-main">
 <div class="list-title">🎉 Festività</div>
 <div class="list-sub" id="holidaySummary">0</div>
 </div>
 </div>
+
 <div class="list-item">
 <div class="list-main">
 <div class="list-title">🌉 Ponti</div>
 <div class="list-sub" id="bridgeSummary">0</div>
 </div>
 </div>
+
 <div class="list-item">
 <div class="list-main">
 <div class="list-title">❌ Assenze passate</div>
 <div class="list-sub" id="pastAbsenceSummary">0</div>
 </div>
 </div>
+
 </div>
+
 </div>
+
 </div>
+
 </section>
 
+
 <section id="calendar" class="page hidden">
+
 <div class="card">
+
 <div class="calendar-controls">
+
 <button class="btn" onclick="changeMonth(-1)">←</button>
+
 <h3 id="calendarTitle"></h3>
+
 <button class="btn" onclick="changeMonth(1)">→</button>
+
 </div>
+
 <div class="weekdays">
+
 <div class="weekday">Lun</div>
 <div class="weekday">Mar</div>
 <div class="weekday">Mer</div>
@@ -653,642 +722,1103 @@ Non hai un account? <span class="link" onclick="showRegister()">Crealo</span>
 <div class="weekday">Ven</div>
 <div class="weekday">Sab</div>
 <div class="weekday">Dom</div>
+
 </div>
+
 <div id="calendarGrid" class="calendar-grid"></div>
+
 </div>
+
 </section>
 
+
 <section id="absence" class="page hidden">
+
 <div class="card">
+
 <div class="section-title">
+
 <div>
 <h3>❌ Assenze</h3>
 <p class="muted">Gestisci tutte le tue assenze.</p>
 </div>
-<button class="btn btn-primary" onclick="openAbsenceModal()">+ Aggiungi assenza</button>
+
+<button class="btn btn-primary"
+onclick="openAbsenceModal()">
++ Aggiungi assenza
+</button>
+
 </div>
+
 <div id="absenceList" class="list"></div>
+
 </div>
+
 </section>
 
+
 <section id="settings" class="page hidden">
+
 <div class="card">
+
 <h3>⚙️ Impostazioni</h3>
-<p class="muted">Le modifiche saranno salvate sul Cloud.</p>
+
+<p class="muted">
+Puoi modificare tutto quando vuoi.
+</p>
 
 <div class="setting">
+
 <div class="field">
 <label>Inizio anno / progetto</label>
 <input id="setStart" type="date">
 </div>
+
 <div class="field">
 <label>Fine anno / progetto</label>
 <input id="setEnd" type="date">
 </div>
+
 </div>
 
+
 <div class="setting">
+
 <b>🚫 Giorni della settimana non contabili</b>
-<p class="list-sub">Questi giorni non verranno mai conteggiati.</p>
+
+<p class="list-sub">
+Questi giorni non verranno mai conteggiati.
+</p>
+
 <div class="checkbox-row">
-<label class="check"><input type="checkbox" value="1"> Lunedì</label>
-<label class="check"><input type="checkbox" value="2"> Martedì</label>
-<label class="check"><input type="checkbox" value="3"> Mercoledì</label>
-<label class="check"><input type="checkbox" value="4"> Giovedì</label>
-<label class="check"><input type="checkbox" value="5"> Venerdì</label>
-<label class="check"><input type="checkbox" value="6"> Sabato</label>
-<label class="check"><input type="checkbox" value="0"> Domenica</label>
-</div>
+
+<label class="check">
+<input type="checkbox" value="1"> Lunedì
+</label>
+
+<label class="check">
+<input type="checkbox" value="2"> Martedì
+</label>
+
+<label class="check">
+<input type="checkbox" value="3"> Mercoledì
+</label>
+
+<label class="check">
+<input type="checkbox" value="4"> Giovedì
+</label>
+
+<label class="check">
+<input type="checkbox" value="5"> Venerdì
+</label>
+
+<label class="check">
+<input type="checkbox" value="6"> Sabato
+</label>
+
+<label class="check">
+<input type="checkbox" value="0"> Domenica
+</label>
+
 </div>
 
+</div>
+
+
 <div class="setting">
+
 <label style="display:flex;align-items:center;gap:10px">
-<input id="excludeAbsences" type="checkbox" style="width:20px;height:20px">
+
+<input id="excludeAbsences"
+type="checkbox"
+style="width:20px;height:20px">
+
 <div>
 <b>Le assenze non contano come giorno trascorso</b>
-<div class="list-sub">Le assenze vengono escluse dal conteggio.</div>
+<div class="list-sub">
+Le assenze vengono escluse dal conteggio.
 </div>
-</label>
 </div>
 
+</label>
+
+</div>
+
+
 <div class="setting">
+
 <div class="section-title">
+
 <div>
 <b>🎉 Festività</b>
-<div class="list-sub">Puoi inserire una festività singola o un intervallo.</div>
+
+<div class="list-sub">
+Puoi inserire una festività singola o un intervallo.
 </div>
-<button class="btn btn-primary" onclick="openSpecialModal('holiday')">+ Aggiungi</button>
+
 </div>
+
+<button class="btn btn-primary"
+onclick="openSpecialModal('holiday')">
++ Aggiungi
+</button>
+
+</div>
+
 <div id="holidayList" class="list"></div>
+
 </div>
+
 
 <div class="setting">
+
 <div class="section-title">
+
 <div>
 <b>🌉 Ponti</b>
-<div class="list-sub">Inserisci inizio e fine del ponte.</div>
+
+<div class="list-sub">
+Inserisci inizio e fine del ponte.
 </div>
-<button class="btn btn-primary" onclick="openSpecialModal('bridge')">+ Aggiungi ponte</button>
+
 </div>
+
+<button class="btn btn-primary"
+onclick="openSpecialModal('bridge')">
++ Aggiungi ponte
+</button>
+
+</div>
+
 <div id="bridgeList" class="list"></div>
+
 </div>
+
 
 <div class="actions" style="margin-top:20px">
-<button class="btn btn-primary" onclick="saveSettings()">💾 Salva impostazioni</button>
-<button class="btn btn-danger" onclick="resetAccount()">🗑️ Elimina account</button>
+
+<button class="btn btn-primary"
+onclick="saveSettings()">
+💾 Salva impostazioni
+</button>
+
+<button class="btn btn-danger"
+onclick="resetAccount()">
+🗑️ Elimina account
+</button>
+
 </div>
+
 </div>
+
 </section>
 
+
 <footer>
-Anno Scolastico • Dati salvati online (JSONbin)
+Anno Scolastico • Dati salvati localmente nel browser
 </footer>
 
 </div>
 </div>
 
+
 <div id="absenceModal" class="modal-bg hidden">
+
 <div class="modal">
+
 <h2>❌ Aggiungi assenza</h2>
+
 <div class="field">
 <label>Data</label>
 <input id="absenceDate" type="date">
 </div>
+
 <div class="field">
 <label>Motivo / nota</label>
-<textarea id="absenceNote" placeholder="Facoltativo"></textarea>
+<textarea id="absenceNote"
+placeholder="Facoltativo"></textarea>
 </div>
+
 <div class="modal-actions">
-<button class="btn" onclick="closeModal('absenceModal')">Annulla</button>
-<button class="btn btn-primary" onclick="addAbsence()">Aggiungi</button>
+
+<button class="btn"
+onclick="closeModal('absenceModal')">
+Annulla
+</button>
+
+<button class="btn btn-primary"
+onclick="addAbsence()">
+Aggiungi
+</button>
+
 </div>
+
 </div>
+
 </div>
+
 
 <div id="specialModal" class="modal-bg hidden">
+
 <div class="modal">
+
 <h2 id="specialTitle">Aggiungi evento</h2>
+
 <div class="field">
+
 <label>Nome</label>
-<input id="specialName" placeholder="Es. Vacanze di Natale">
+
+<input id="specialName"
+placeholder="Es. Vacanze di Natale">
+
 </div>
+
 <div class="field">
+
 <label>Data di inizio</label>
+
 <input id="specialStart" type="date">
+
 </div>
+
 <div class="field">
+
 <label>Data di fine</label>
+
 <input id="specialEnd" type="date">
+
 </div>
-<div class="muted" style="font-size:13px">Per una festività singola inserisci la stessa data come inizio e fine.</div>
+
+<div class="muted" style="font-size:13px">
+Per una festività singola inserisci la stessa data come inizio e fine.
+</div>
+
 <div class="modal-actions">
-<button class="btn" onclick="closeModal('specialModal')">Annulla</button>
-<button class="btn btn-primary" onclick="addSpecial()">Salva evento</button>
+
+<button class="btn"
+onclick="closeModal('specialModal')">
+Annulla
+</button>
+
+<button class="btn btn-primary"
+onclick="addSpecial()">
+Salva evento
+</button>
+
 </div>
+
 </div>
+
 </div>
+
 
 <script>
-// Backend pubblico gratuito basato su JSONbin.io (API pubblica condivisa per demo cloud senza server privato)
-const BIN_MASTER_URL = "https://api.jsonbin.io/v3/b";
-const MASTER_BIN_ID = "68c558c4ad19ca34f89d38c6"; // Bin principale pubblico per gestire il database utenti
-const API_KEY = "$2a$10$Qx9p5p8mEwN0zB2bV1E5IuX5x1y5K5z2E8x9J2v3K4l5M6n7O8p9q"; // Chiave pubblica master per demo
 
-let account = null;
-let calendarDate = new Date();
-let specialType = "holiday";
+const STORAGE_KEY="anno_scolastico_range_v4";
 
-const monthNames = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
-const weekdayNames = ["Domenica","Lunedì","Martedì","Mercoledì","Giovedì","Venerdì","Sabato"];
+let account=null;
+let calendarDate=new Date();
+let specialType="holiday";
+
+const monthNames=[
+"Gennaio","Febbraio","Marzo","Aprile",
+"Maggio","Giugno","Luglio","Agosto",
+"Settembre","Ottobre","Novembre","Dicembre"
+];
+
+const weekdayNames=[
+"Domenica","Lunedì","Martedì",
+"Mercoledì","Giovedì","Venerdì","Sabato"
+];
+
 
 function toISO(date){
-const d = new Date(date);
-return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+
+const d=new Date(date);
+
+return d.getFullYear()+"-"+
+String(d.getMonth()+1).padStart(2,"0")+"-"+
+String(d.getDate()).padStart(2,"0");
+
 }
+
 
 function parseDate(str){
-const [y,m,d] = str.split("-").map(Number);
+
+const [y,m,d]=str.split("-").map(Number);
+
 return new Date(y,m-1,d);
+
 }
+
 
 function formatDate(str){
-return parseDate(str).toLocaleDateString("it-IT",{day:"2-digit",month:"2-digit",year:"numeric"});
+
+return parseDate(str).toLocaleDateString(
+"it-IT",
+{
+day:"2-digit",
+month:"2-digit",
+year:"numeric"
+});
+
 }
+
 
 function todayDate(){
+
 return parseDate(toISO(new Date()));
+
 }
+
 
 window.addEventListener("load",()=>{
-const savedNick = localStorage.getItem("as_cloud_nick");
-const savedPass = localStorage.getItem("as_cloud_pass");
-if(savedNick && savedPass){
-  autoLogin(savedNick, savedPass);
-}
 
-const now = new Date();
-document.getElementById("regStart").value = toISO(now);
-document.getElementById("regEnd").value = toISO(new Date(now.getFullYear(), now.getMonth(), now.getDate()+365));
-});
+const saved=localStorage.getItem(STORAGE_KEY);
 
-// Funzioni Cloud Database
-async function fetchCloudDB(){
-try {
-  const res = await fetch(`${BIN_MASTER_URL}/${MASTER_BIN_ID}/latest`, {
-    headers: { "X-Master-Key": API_KEY }
-  });
-  const data = await res.json();
-  return data.record || { users: [] };
-} catch(e){
-  return { users: [] };
-}
-}
+if(saved){
 
-async function saveCloudDB(db){
-await fetch(`${BIN_MASTER_URL}/${MASTER_BIN_ID}`, {
-  method: "PUT",
-  headers: {
-    "Content-Type": "application/json",
-    "X-Master-Key": API_KEY
-  },
-  body: JSON.stringify(db)
-});
-}
+try{
 
-async function createAccount(){
-const nickname = document.getElementById("regNick").value.trim();
-const password = document.getElementById("regPass").value;
-const start = document.getElementById("regStart").value;
-const end = document.getElementById("regEnd").value;
+account=JSON.parse(saved);
 
-if(!nickname || !password || !start || !end){
-  alert("Compila tutti i campi.");
-  return;
-}
-if(password.length < 4){
-  alert("La password deve avere almeno 4 caratteri.");
-  return;
-}
-if(start >= end){
-  alert("La fine deve essere successiva all'inizio.");
-  return;
-}
+if(!account.holidays)
+account.holidays=[];
 
-let db = await fetchCloudDB();
-if(db.users.some(u => u.nickname.toLowerCase() === nickname.toLowerCase())){
-  alert("Questo nickname è già registrato. Scegline un altro o accedi.");
-  return;
-}
+if(!account.bridges)
+account.bridges=[];
 
-const newUser = {
-  nickname,
-  password,
-  start,
-  end,
-  excludedWeekdays: [0,6],
-  excludeAbsences: true,
-  holidays: [],
-  bridges: [],
-  absences: [],
-  settingsConfirmed: true
-};
+if(!account.absences)
+account.absences=[];
 
-db.users.push(newUser);
-await saveCloudDB(db);
+if(!account.excludedWeekdays)
+account.excludedWeekdays=[0,6];
 
-account = newUser;
-localStorage.setItem("as_cloud_nick", nickname);
-localStorage.setItem("as_cloud_pass", password);
+if(account.excludeAbsences===undefined)
+account.excludeAbsences=true;
 
-alert("Account Cloud creato con successo! 🎉\nOra puoi accedervi da qualsiasi dispositivo.");
 showApp();
+
+}catch(e){
+
+localStorage.removeItem(STORAGE_KEY);
+
 }
 
-async function login(){
-const nickname = document.getElementById("loginNick").value.trim();
-const password = document.getElementById("loginPass").value;
-
-let db = await fetchCloudDB();
-const found = db.users.find(u => u.nickname.toLowerCase() === nickname.toLowerCase() && u.password === password);
-
-if(found){
-  account = found;
-  localStorage.setItem("as_cloud_nick", account.nickname);
-  localStorage.setItem("as_cloud_pass", account.password);
-  showApp();
-} else {
-  alert("Nickname o password errati.");
-}
 }
 
-async function autoLogin(nickname, password){
-let db = await fetchCloudDB();
-const found = db.users.find(u => u.nickname.toLowerCase() === nickname.toLowerCase() && u.password === password);
-if(found){
-  account = found;
-  showApp();
-}
+const now=new Date();
+
+document.getElementById("regStart").value=
+toISO(now);
+
+document.getElementById("regEnd").value=
+toISO(
+new Date(
+now.getFullYear(),
+now.getMonth(),
+now.getDate()+365
+)
+);
+
+});
+
+
+function save(){
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(account)
+);
+
 }
 
-async function save(){
-if(!account) return;
-let db = await fetchCloudDB();
-const index = db.users.findIndex(u => u.nickname.toLowerCase() === account.nickname.toLowerCase());
-if(index !== -1){
-  db.users[index] = account;
-  await saveCloudDB(db);
-}
-}
 
 function showLogin(){
-document.getElementById("registerBox").classList.add("hidden");
-document.getElementById("loginBox").classList.remove("hidden");
+
+document.getElementById("registerBox")
+.classList.add("hidden");
+
+document.getElementById("loginBox")
+.classList.remove("hidden");
+
 }
+
 
 function showRegister(){
-document.getElementById("loginBox").classList.add("hidden");
-document.getElementById("registerBox").classList.remove("hidden");
+
+document.getElementById("loginBox")
+.classList.add("hidden");
+
+document.getElementById("registerBox")
+.classList.remove("hidden");
+
 }
+
+
+function createAccount(){
+
+const nickname=
+document.getElementById("regNick").value.trim();
+
+const password=
+document.getElementById("regPass").value;
+
+const start=
+document.getElementById("regStart").value;
+
+const end=
+document.getElementById("regEnd").value;
+
+if(!nickname || !password || !start || !end){
+
+alert("Compila tutti i campi.");
+
+return;
+
+}
+
+if(password.length<4){
+
+alert("La password deve avere almeno 4 caratteri.");
+
+return;
+
+}
+
+if(start>=end){
+
+alert("La fine deve essere successiva all'inizio.");
+
+return;
+
+}
+
+account={
+
+nickname,
+password,
+start,
+end,
+
+excludedWeekdays:[0,6],
+
+excludeAbsences:true,
+
+holidays:[],
+bridges:[],
+absences:[],
+
+settingsConfirmed:true
+
+};
+
+save();
+
+alert(
+"Account creato ufficialmente! 🎉\n\n"+
+"Puoi sempre modificare le impostazioni."
+);
+
+showApp();
+
+}
+
+
+function login(){
+
+const nickname=
+document.getElementById("loginNick").value.trim();
+
+const password=
+document.getElementById("loginPass").value;
+
+const saved=
+localStorage.getItem(STORAGE_KEY);
+
+if(!saved){
+
+alert(
+"Nessun account trovato su questo browser."
+);
+
+return;
+
+}
+
+const data=JSON.parse(saved);
+
+if(
+data.nickname===nickname &&
+data.password===password
+){
+
+account=data;
+
+if(!account.holidays)
+account.holidays=[];
+
+if(!account.bridges)
+account.bridges=[];
+
+if(!account.absences)
+account.absences=[];
+
+if(!account.excludedWeekdays)
+account.excludedWeekdays=[0,6];
+
+if(account.excludeAbsences===undefined)
+account.excludeAbsences=true;
+
+save();
+
+showApp();
+
+}else{
+
+alert("Nickname o password errati.");
+
+}
+
+}
+
 
 function logout(){
-account = null;
-localStorage.removeItem("as_cloud_nick");
-localStorage.removeItem("as_cloud_pass");
-document.getElementById("appScreen").classList.add("hidden");
-document.getElementById("authScreen").classList.remove("hidden");
+
+account=null;
+
+document.getElementById("appScreen")
+.classList.add("hidden");
+
+document.getElementById("authScreen")
+.classList.remove("hidden");
+
 showLogin();
+
 }
 
-async function resetAccount(){
-if(!confirm("Eliminare definitivamente account e dati dal Cloud?")) return;
-let db = await fetchCloudDB();
-db.users = db.users.filter(u => u.nickname.toLowerCase() !== account.nickname.toLowerCase());
-await saveCloudDB(db);
-localStorage.removeItem("as_cloud_nick");
-localStorage.removeItem("as_cloud_pass");
+
+function resetAccount(){
+
+if(!confirm(
+"Eliminare account e tutti i dati?"
+))return;
+
+localStorage.removeItem(STORAGE_KEY);
+
 location.reload();
+
 }
+
 
 function showApp(){
-document.getElementById("authScreen").classList.add("hidden");
-document.getElementById("appScreen").classList.remove("hidden");
-document.getElementById("username").textContent = account.nickname;
-document.getElementById("avatar").textContent = account.nickname.charAt(0).toUpperCase();
+
+document.getElementById("authScreen")
+.classList.add("hidden");
+
+document.getElementById("appScreen")
+.classList.remove("hidden");
+
+document.getElementById("username")
+.textContent=account.nickname;
+
+document.getElementById("avatar")
+.textContent=
+account.nickname.charAt(0).toUpperCase();
+
 renderSettings();
+
 updateAll();
+
 }
 
-function openPage(page, button){
-document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
-document.getElementById(page).classList.remove("hidden");
-document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+
+function openPage(page,button){
+
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.add("hidden"));
+
+document.getElementById(page)
+.classList.remove("hidden");
+
+document.querySelectorAll(".nav-btn")
+.forEach(b=>b.classList.remove("active"));
+
 button.classList.add("active");
-if(page === "calendar") renderCalendar();
-if(page === "absence") renderAbsences();
-if(page === "settings") renderSettings();
+
+if(page==="calendar")
+renderCalendar();
+
+if(page==="absence")
+renderAbsences();
+
+if(page==="settings")
+renderSettings();
+
 }
+
 
 function getAllDates(){
-const result = [];
-let current = parseDate(account.start);
-const end = parseDate(account.end);
-while(current <= end){
-  result.push(toISO(current));
-  current.setDate(current.getDate()+1);
+
+const result=[];
+
+let current=parseDate(account.start);
+
+const end=parseDate(account.end);
+
+while(current<=end){
+
+result.push(toISO(current));
+
+current.setDate(
+current.getDate()+1
+);
+
 }
+
 return result;
+
 }
 
-function eventContains(event, date){
-return date >= event.start && date <= event.end;
+
+function eventContains(event,date){
+
+return date>=event.start &&
+date<=event.end;
+
 }
 
-function getEvent(type, date){
-let list = type === "holiday" ? account.holidays : account.bridges;
-return list.find(event => eventContains(event, date));
+
+function getEvent(type,date){
+
+let list=[];
+
+if(type==="holiday")
+list=account.holidays;
+
+if(type==="bridge")
+list=account.bridges;
+
+return list.find(
+event=>eventContains(event,date)
+);
+
 }
+
 
 function isEventExcluded(date){
-return getEvent("holiday", date) || getEvent("bridge", date);
+
+if(getEvent("holiday",date))
+return true;
+
+if(getEvent("bridge",date))
+return true;
+
+return false;
+
 }
+
 
 function isCalendarExcluded(date){
-const d = parseDate(date);
-if(account.excludedWeekdays.includes(d.getDay())) return true;
-if(isEventExcluded(date)) return true;
-return false;
+
+const d=parseDate(date);
+
+if(
+account.excludedWeekdays
+.includes(d.getDay())
+){
+
+return true;
+
 }
+
+if(isEventExcluded(date))
+return true;
+
+return false;
+
+}
+
 
 function getStats(){
-const dates = getAllDates();
-const today = todayDate();
-let total = 0, passed = 0, remaining = 0;
-let pastAbsences = 0, futureAbsences = 0;
 
-dates.forEach(date => {
-  const d = parseDate(date);
-  if(isCalendarExcluded(date)) return;
-  total++;
-  const absence = account.absences.some(x => x.date === date);
-  if(absence && account.excludeAbsences){
-    if(d < today) pastAbsences++;
-    else futureAbsences++;
-    return;
-  }
-  if(d < today) passed++;
-  else remaining++;
+const dates=getAllDates();
+
+const today=todayDate();
+
+let total=0;
+let passed=0;
+let remaining=0;
+
+let pastAbsences=0;
+let futureAbsences=0;
+
+dates.forEach(date=>{
+
+const d=parseDate(date);
+
+if(isCalendarExcluded(date))
+return;
+
+total++;
+
+const absence=
+account.absences
+.some(x=>x.date===date);
+
+if(
+absence &&
+account.excludeAbsences
+){
+
+if(d<today)
+pastAbsences++;
+else
+futureAbsences++;
+
+return;
+
+}
+
+if(d<today)
+passed++;
+else
+remaining++;
+
 });
 
-const countedAbsences = pastAbsences + futureAbsences;
-const percentage = total > 0 ? Math.round((passed / total) * 100) : 0;
-return { total, passed, remaining, pastAbsences, futureAbsences, countedAbsences, percentage };
+const countedAbsences=
+pastAbsences+
+futureAbsences;
+
+const percentage=
+total>0
+?Math.round((passed/total)*100)
+:0;
+
+return{
+total,
+passed,
+remaining,
+pastAbsences,
+futureAbsences,
+countedAbsences,
+percentage
+};
+
 }
+
 
 function updateDashboard(){
-const s = getStats();
-document.getElementById("passed").textContent = s.passed;
-document.getElementById("remaining").textContent = s.remaining;
-document.getElementById("total").textContent = s.total;
-document.getElementById("absenceCount").textContent = s.countedAbsences;
-document.getElementById("percent").textContent = s.percentage + "%";
-document.getElementById("progressBar").style.width = Math.min(100, s.percentage) + "%";
-document.getElementById("progressText").textContent = `${s.passed} giorni trascorsi • ${s.remaining} rimanenti • ${s.countedAbsences} assenze`;
-document.getElementById("pastAbsenceSummary").textContent = s.pastAbsences;
-document.getElementById("periodText").textContent = `${formatDate(account.start)} → ${formatDate(account.end)}`;
 
-const names = account.excludedWeekdays.map(x => weekdayNames[x]);
-document.getElementById("excludedSummary").textContent = names.length ? names.join(", ") : "Nessuno";
-document.getElementById("holidaySummary").textContent = account.holidays.length;
-document.getElementById("bridgeSummary").textContent = account.bridges.length;
+const s=getStats();
+
+document.getElementById("passed")
+.textContent=s.passed;
+
+document.getElementById("remaining")
+.textContent=s.remaining;
+
+document.getElementById("total")
+.textContent=s.total;
+
+document.getElementById("absenceCount")
+.textContent=s.countedAbsences;
+
+document.getElementById("percent")
+.textContent=s.percentage+"%";
+
+document.getElementById("progressBar")
+.style.width=
+Math.min(100,s.percentage)+"%";
+
+document.getElementById("progressText")
+.textContent=
+`${s.passed} giorni trascorsi • ${s.remaining} rimanenti • ${s.countedAbsences} assenze`;
+
+document.getElementById("pastAbsenceSummary")
+.textContent=s.pastAbsences;
+
+document.getElementById("periodText")
+.textContent=
+`${formatDate(account.start)} → ${formatDate(account.end)}`;
+
+const names=
+account.excludedWeekdays
+.map(x=>weekdayNames[x]);
+
+document.getElementById("excludedSummary")
+.textContent=
+names.length
+?names.join(", ")
+:"Nessuno";
+
+document.getElementById("holidaySummary")
+.textContent=
+account.holidays.length;
+
+document.getElementById("bridgeSummary")
+.textContent=
+account.bridges.length;
+
 }
 
+
 function updateAll(){
+
 updateDashboard();
 renderCalendar();
 renderAbsences();
 renderSpecialLists();
+
 }
+
 
 function changeMonth(amount){
-calendarDate.setMonth(calendarDate.getMonth() + amount);
+
+calendarDate.setMonth(
+calendarDate.getMonth()+amount
+);
+
 renderCalendar();
+
 }
+
 
 function renderCalendar(){
-const year = calendarDate.getFullYear();
-const month = calendarDate.getMonth();
-document.getElementById("calendarTitle").textContent = `${monthNames[month]} ${year}`;
-const grid = document.getElementById("calendarGrid");
-grid.innerHTML = "";
 
-const first = new Date(year, month, 1);
-const startDay = (first.getDay() + 6) % 7;
+const year=
+calendarDate.getFullYear();
 
-for(let i = 0; i < startDay; i++){
-  const empty = document.createElement("div");
-  empty.className = "day empty";
-  grid.appendChild(empty);
+const month=
+calendarDate.getMonth();
+
+document.getElementById("calendarTitle")
+.textContent=
+`${monthNames[month]} ${year}`;
+
+const grid=
+document.getElementById("calendarGrid");
+
+grid.innerHTML="";
+
+const first=
+new Date(year,month,1);
+
+const startDay=
+(first.getDay()+6)%7;
+
+for(let i=0;i<startDay;i++){
+
+const empty=
+document.createElement("div");
+
+empty.className="day empty";
+
+grid.appendChild(empty);
+
 }
 
-const days = new Date(year, month + 1, 0).getDate();
-const today = toISO(new Date());
+const days=
+new Date(year,month+1,0).getDate();
 
-for(let day = 1; day <= days; day++){
-  const date = toISO(new Date(year, month, day));
-  const d = parseDate(date);
-  const el = document.createElement("div");
-  el.className = "day";
+const today=toISO(new Date());
 
-  if(d.getDay() === 0 || d.getDay() === 6) el.classList.add("weekend");
-  if(date === today) el.classList.add("today");
+for(let day=1;day<=days;day++){
 
-  const holiday = getEvent("holiday", date);
-  const bridge = getEvent("bridge", date);
-  const absence = account.absences.find(x => x.date === date);
+const date=
+toISO(
+new Date(year,month,day)
+);
 
-  if(holiday) el.classList.add("holiday");
-  if(bridge) el.classList.add("bridge");
-  if(absence) el.classList.add("absence");
+const d=parseDate(date);
 
-  el.innerHTML = `<div class="day-number">${day}</div><div class="day-tags"></div>`;
-  const tags = el.querySelector(".day-tags");
+const el=
+document.createElement("div");
 
-  if(holiday) tags.innerHTML += `<div class="tag red">🎉 ${escapeHtml(holiday.name)}</div>`;
-  if(bridge) tags.innerHTML += `<div class="tag orange">🌉 ${escapeHtml(bridge.name)}</div>`;
-  if(absence) tags.innerHTML += `<div class="tag blue">❌ Assenza</div>`;
-  if(isCalendarExcluded(date) && !holiday && !bridge && !absence){
-    tags.innerHTML += `<div class="tag gray">🚫 Non contabile</div>`;
-  }
-  grid.appendChild(el);
+el.className="day";
+
+if(
+d.getDay()===0 ||
+d.getDay()===6
+)
+el.classList.add("weekend");
+
+if(date===today)
+el.classList.add("today");
+
+const holiday=
+getEvent("holiday",date);
+
+const bridge=
+getEvent("bridge",date);
+
+const absence=
+account.absences.find(
+x=>x.date===date
+);
+
+if(holiday)
+el.classList.add("holiday");
+
+if(bridge)
+el.classList.add("bridge");
+
+if(absence)
+el.classList.add("absence");
+
+el.innerHTML=
+`
+<div class="day-number">${day}</div>
+<div class="day-tags"></div>
+`;
+
+const tags=
+el.querySelector(".day-tags");
+
+if(holiday){
+
+tags.innerHTML+=
+`
+<div class="tag red">
+🎉 ${escapeHtml(holiday.name)}
+</div>
+`;
+
 }
+
+if(bridge){
+
+tags.innerHTML+=
+`
+<div class="tag orange">
+🌉 ${escapeHtml(bridge.name)}
+</div>
+`;
+
 }
+
+if(absence){
+
+tags.innerHTML+=
+`
+<div class="tag blue">
+❌ Assenza
+</div>
+`;
+
+}
+
+if(
+isCalendarExcluded(date) &&
+!holiday &&
+!bridge &&
+!absence
+){
+
+tags.innerHTML+=
+`
+<div class="tag gray">
+🚫 Non contabile
+</div>
+`;
+
+}
+
+grid.appendChild(el);
+
+}
+
+}
+
 
 function openAbsenceModal(){
-document.getElementById("absenceDate").value = toISO(new Date());
-document.getElementById("absenceNote").value = "";
-document.getElementById("absenceModal").classList.remove("hidden");
+
+document.getElementById("absenceDate")
+.value=toISO(new Date());
+
+document.getElementById("absenceNote")
+.value="";
+
+document.getElementById("absenceModal")
+.classList.remove("hidden");
+
 }
 
-async function addAbsence(){
-const date = document.getElementById("absenceDate").value;
-const note = document.getElementById("absenceNote").value.trim();
 
-if(!date){ alert("Scegli una data."); return; }
-if(date < account.start || date > account.end){ alert("La data deve essere dentro il periodo."); return; }
-if(isCalendarExcluded(date)){ alert("Questa data è già esclusa dal conteggio."); return; }
-if(account.absences.some(x => x.date === date)){ alert("Questa assenza esiste già."); return; }
+function addAbsence(){
 
-account.absences.push({ date, note });
-account.absences.sort((a,b) => a.date.localeCompare(b.date));
+const date=
+document.getElementById("absenceDate").value;
 
-await save();
+const note=
+document.getElementById("absenceNote").value.trim();
+
+if(!date){
+
+alert("Scegli una data.");
+
+return;
+
+}
+
+if(
+date<account.start ||
+date>account.end
+){
+
+alert(
+"La data deve essere dentro il periodo."
+);
+
+return;
+
+}
+
+if(isCalendarExcluded(date)){
+
+alert(
+"Questa data è già esclusa dal conteggio."
+);
+
+return;
+
+}
+
+if(
+account.absences.some(x=>x.date===date)
+){
+
+alert("Questa assenza esiste già.");
+
+return;
+
+}
+
+account.absences.push({
+date,
+note
+});
+
+account.absences.sort(
+(a,b)=>a.date.localeCompare(b.date)
+);
+
+save();
+
 closeModal("absenceModal");
+
 updateAll();
+
 }
 
-async function removeAbsence(index){
-if(!confirm("Rimuovere questa assenza?")) return;
-account.absences.splice(index, 1);
-await save();
-updateAll();
-}
 
-function renderAbsences(){
-const list = document.getElementById("absenceList");
-list.innerHTML = "";
-if(!account.absences.length){
-  list.innerHTML = `<div class="empty">Nessuna assenza registrata.</div>`;
-  return;
-}
-account.absences.forEach((absence, index) => {
-  const item = document.createElement("div");
-  item.className = "list-item";
-  item.innerHTML = `
-    <div class="list-main">
-      <div class="list-title">❌ ${formatDate(absence.date)}</div>
-      <div class="list-sub">${escapeHtml(absence.note || "Nessuna nota")}</div>
-    </div>
-    <button class="btn btn-danger" onclick="removeAbsence(${index})">🗑️ Rimuovi</button>
-  `;
-  list.appendChild(item);
-});
-}
+function removeAbsence(index){
 
-function openSpecialModal(type){
-specialType = type;
-document.getElementById("specialTitle").textContent = type === "holiday" ? "🎉 Aggiungi festività" : "🌉 Aggiungi ponte";
-document.getElementById("specialName").value = "";
-document.getElementById("specialStart").value = "";
-document.getElementById("specialEnd").value = "";
-document.getElementById("specialModal").classList.remove("hidden");
-}
+if(
+!confirm("Rimuovere questa assenza?")
+)return;
 
-async function addSpecial(){
-const name = document.getElementById("specialName").value.trim();
-const start = document.getElementById("specialStart").value;
-const end = document.getElementById("specialEnd").value;
+account.absences.splice(index,1);
 
-if(!name || !start || !end){ alert("Inserisci nome, data di inizio e data di fine."); return; }
-if(start > end){ alert("La data di fine deve essere successiva all'inizio."); return; }
-if(start < account.start || end > account.end){ alert("L'intervallo deve essere dentro l'anno scolastico."); return; }
-
-let list = specialType === "holiday" ? account.holidays : account.bridges;
-const overlap = list.some(event => start <= event.end && end >= event.start);
-if(overlap){ alert("Questo intervallo si sovrappone a un evento già presente."); return; }
-
-list.push({ name, start, end });
-list.sort((a,b) => a.start.localeCompare(b.start));
-
-await save();
-closeModal("specialModal");
-updateAll();
-}
-
-function renderSpecialLists(){
-renderSpecialList("holidayList", account.holidays, "holiday");
-renderSpecialList("bridgeList", account.bridges, "bridge");
-}
-
-function renderSpecialList(id, list, type){
-const container = document.getElementById(id);
-container.innerHTML = "";
-if(!list.length){
-  container.innerHTML = `<div class="empty">Nessun evento programmato.</div>`;
-  return;
-}
-list.forEach((event, index) => {
-  const icon = type === "holiday" ? "🎉" : "🌉";
-  const item = document.createElement("div");
-  item.className = "list-item";
-  item.innerHTML = `
-    <div class="list-main">
-      <div class="list-title">${icon} ${escapeHtml(event.name)}</div>
-      <div class="list-sub">${formatDate(event.start)} → ${formatDate(event.end)}</div>
-    </div>
-    <button class="btn btn-danger" onclick="removeSpecial('${type}', ${index})">🗑️</button>
-  `;
-  container.appendChild(item);
-});
-}
-
-async function removeSpecial(type, index){
-let list = type === "holiday" ? account.holidays : account.bridges;
-if(!confirm("Vuoi eliminare l'intero periodo?")) return;
-list.splice(index, 1);
-await save();
-updateAll();
-}
-
-function renderSettings(){
-document.getElementById("setStart").value = account.start;
-document.getElementById("setEnd").value = account.end;
-document.getElementById("excludeAbsences").checked = account.excludeAbsences;
-document.querySelectorAll("#settings .checkbox-row input").forEach(cb => {
-  cb.checked = account.excludedWeekdays.includes(Number(cb.value));
-});
-renderSpecialLists();
-}
-
-async function saveSettings(){
-const start = document.getElementById("setStart").value;
-const end = document.getElementById("setEnd").value;
-if(!start || !end){ alert("Inserisci entrambe le date."); return; }
-if(start >= end){ alert("La fine deve essere successiva all'inizio."); return; }
-
-const weekdays = [];
-document.querySelectorAll("#settings .checkbox-row input").forEach(cb => {
-  if(cb.checked) weekdays.push(Number(cb.value));
-});
-
-account.start = start;
-account.end = end;
-account.excludedWeekdays = weekdays;
-account.excludeAbsences = document.getElementById("excludeAbsences").checked;
-account.settingsConfirmed = true;
-
-await save();
-updateAll();
-alert("Impostazioni salvate sul Cloud! ✅");
-}
-
-function closeModal(id){
-document.getElementById(id).classList.add("hidden");
-}
-
-function escapeHtml(text){
-return String(text).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
-}
-
-document.querySelectorAll(".modal-bg").forEach(bg => {
-bg.addEventListener("click", e => { if(e.target === bg) bg.classList.add("hidden"); });
-});
-
-document.addEventListener("keydown", e => {
-if(e.key === "Escape"){
-  document.querySelectorAll(".modal-bg").forEach(m => m.classList.add("hidden"));
-}
-});
-</script>
-
-</body>
-</html>
+save();
